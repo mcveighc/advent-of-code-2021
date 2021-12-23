@@ -1,11 +1,15 @@
 package aoc.opencast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.BufferOverflowException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -40,10 +44,12 @@ public class Main {
             var currentGrid = new int[5][5];
             var rowIndex = 0;
 
-            var path = String.join("//", System.getProperty("user.dir"), "bingo.txt");
-            File myObj = new File(path);
-            Scanner myReader = new Scanner(myObj);
+            var path = Paths.get(System.getProperty("user.dir"), "bingo.txt");
+            try(BufferedReader myObj = Files.newBufferedReader(path)) {
 
+            } catch (IOException ex) {
+
+            }
             while (myReader.hasNextLine()) {
                 var rowData = myReader.nextLine();
                 if(rowData == "") {
